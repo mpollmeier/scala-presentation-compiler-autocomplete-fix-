@@ -17,7 +17,7 @@ sbtcp := {
   val sbtClasspath : String = files.map(x => x.getAbsolutePath).mkString(":")
   println("Set SBT classpath to 'sbt-classpath' environment variable")
   System.setProperty("sbt-classpath", sbtClasspath)
-  println("value: " + System.getProperty("sbt-classpath"))
+  // println("value: " + System.getProperty("sbt-classpath"))
 }
 
 (test in Test) := (test in Test).dependsOn(sbtcp).value

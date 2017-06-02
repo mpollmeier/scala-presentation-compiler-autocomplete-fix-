@@ -1,8 +1,6 @@
 package test
 
-// tests for autocomplete on repl
-
-object Test {
+object Test1 {
   trait Conv[In] {
     type Out
     def apply(in: In): Out
@@ -15,11 +13,11 @@ object Test {
     }
   }
 
-  // autocomplete works on repl: `test.Test.withParens().<TAB>` shows completions for String
+  // autocomplete works on repl: `test.Test1.withParens().<TAB>` shows completions for String
   def withParens[Out]()(implicit conv: Conv.Aux[Int, Out]): Out = "5".asInstanceOf[Out]
 
-  // autocomplete doesn't work on repl: `test.Test.withoutParens.` doesn't suggest anything
-  // when saving intermediate result it works though: `val a = test.Test.withoutParens; a.<TAB>`
+  // autocomplete doesn't work on repl: `test.Test1.withoutParens.` doesn't suggest anything
+  // when saving intermediate result it works though: `val a = test.Test1.withoutParens; a.<TAB>`
   def withoutParens[Out](implicit conv: Conv.Aux[Int, Out]): Out = "5".asInstanceOf[Out]
 }
 
@@ -29,10 +27,4 @@ object Test2 {
   implicit val a: A = ???
   def withParens()(implicit a: A): String = "something"
   def withoutParens(implicit a: A): String = "something"
-}
-
-
-object Usage {
-  // val a: Int = "asd"
-  val a = "asd"
 }
