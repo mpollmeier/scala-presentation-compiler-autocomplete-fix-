@@ -11,11 +11,11 @@ class PresentationCompilerTest extends WordSpec with Matchers {
     val settings = new Settings
     val sbtClasspath = System.getProperty("sbt-classpath")
     settings.classpath.value = s".:${sbtClasspath}"
-    // settings.classpath.value = s".:/home/mp/tmp/pcplod-usage/target/scala-2.12/classes:/home/mp/.coursier/cache/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6.jar:/home/mp/.coursier/cache/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.2/scala-reflect-2.12.2.jar:/home/mp/.coursier/cache/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.2/scala-compiler-2.12.2.jar:/home/mp/.coursier/cache/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.2/scala-library-2.12.2.jar"
     val iMain = new IMain(settings){
       override protected def parentClassLoader = settings.getClass.getClassLoader
     }
-    val completer = new MyPresentationCompilerCompleter(iMain)
+    // val completer = new PresentationCompilerCompleter(iMain) // standard behaviour
+    val completer = new MyPresentationCompilerCompleter(iMain) //fixed autocompletion
 
     val source = Source.fromFile("src/test/resources/DependentTypeCompletion.scala").mkString
     val ret = iMain.compileString(source)
